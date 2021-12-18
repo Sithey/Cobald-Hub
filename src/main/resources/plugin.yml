@@ -1,0 +1,10 @@
+name: CobaldHub
+author: Sithey
+version: 1.0
+main: fr.cobaldhub.Main
+commands:
+  leavearena:
+  saveinv:
+  spec:
+  duel:
+  admin:

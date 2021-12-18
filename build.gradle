@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+}
+
+group 'CobaldUHCV4-HUB'
+version '1.0-SNAPSHOT'
+
+jar.setDestinationDir(new File("E:\\Developpement\\Project\\CobaldUHCV4\\HUB\\plugins"))
+compileJava.options.encoding = 'UTF-8'
+
+sourceCompatibility = 1.8
+
+configurations {
+    extraLibs
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' } }
+
+dependencies {
+    compile files('E:\\Developpement\\Project\\CobaldUHCV4\\HUB\\plugins\\CobaldUHCV4-API-1.0-SNAPSHOT.jar')
+    compile files('D:\\Developpement\\Server\\Test\\spigot.jar')
+    compile files('E:\\Developpement\\Project\\CobaldUHCV4\\gitlab\\TimoCloud_2.jar')
+    extraLibs group: 'org.mongodb', name: 'mongodb-driver', version: '3.11.0'
+
+    configurations.compile.extendsFrom(configurations.extraLibs)
+
+}
+
+jar {
+    from {
+        configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
